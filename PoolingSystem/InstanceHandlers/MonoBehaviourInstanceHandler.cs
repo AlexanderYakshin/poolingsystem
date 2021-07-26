@@ -28,7 +28,9 @@ namespace PoolingSystem.InstanceHandlers
 
 		public override void DestroyInstance(object key, T instance)
 		{
-			DestroyGameObject(instance.gameObject);
+			if (instance.gameObject != null)
+				DestroyGameObject(instance.gameObject);
+			
 			if(_sceneContainers.TryGetValue(key, out var container))
 			{
 				if(container.childCount == 0)
