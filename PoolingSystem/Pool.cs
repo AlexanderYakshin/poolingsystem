@@ -41,8 +41,12 @@ namespace PoolingSystem
 		{
 			foreach (var instance in _disabledInstances.Union(_enabledInstances))
 			{
-				_instanceHandler.DestroyInstance(_key, instance);
+				if (instance != null)
+					_instanceHandler.DestroyInstance(_key, instance);
 			}
+
+			_disabledInstances.Clear();
+			_enabledInstances.Clear();
 		}
 
 		public T GetInstance()
